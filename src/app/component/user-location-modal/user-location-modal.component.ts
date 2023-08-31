@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Coordinate, LocationService } from 'src/app/services/location.service';
-import { GoogleMapComponent } from 'src/app/shared/google-map/google-map.component';
 
 @Component({
   selector: 'app-user-location-modal',
@@ -16,7 +15,7 @@ export class UserLocationModalComponent implements OnInit {
   constructor(
     public modal: NgbActiveModal,
     private _locationService: LocationService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.coordinate = this._locationService.getUserLocation();
@@ -31,6 +30,5 @@ export class UserLocationModalComponent implements OnInit {
   getLocation() {
     this.isChooseonMap = false;
     this.isTrackMe = true;
-
   }
 }

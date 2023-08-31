@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Observable, catchError, map, of } from 'rxjs';
 import { Coordinate, LocationService } from 'src/app/services/location.service';
 
 @Component({
@@ -8,21 +6,22 @@ import { Coordinate, LocationService } from 'src/app/services/location.service';
   templateUrl: './google-map.component.html',
   styleUrls: ['./google-map.component.css'],
 })
-export class GoogleMapComponent implements OnInit{
+export class GoogleMapComponent implements OnInit {
   lat = 16.8565435;
   lng = 96.1208935;
   coordinate = new Coordinate();
   options: google.maps.MapOptions = {
     center: new google.maps.LatLng(this.lat, this.lng),
-    zoom: 14
+    zoom: 14,
   };
 
   constructor(private _locationService: LocationService) {}
 
   ngOnInit(): void {
     this.coordinate = this._locationService.getUserLocation();
-    this.options.center = new google.maps.LatLng(this.coordinate.latitude, this.coordinate.longitutde);
+    this.options.center = new google.maps.LatLng(
+      this.coordinate.latitude,
+      this.coordinate.longitutde
+    );
   }
-
 }
-

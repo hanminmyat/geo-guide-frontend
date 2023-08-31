@@ -7,9 +7,10 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { UserLocationModalComponent } from './component/user-location-modal/user-location-modal.component';
+import { HomeComponent } from './component/home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, UserLocationModalComponent],
+  declarations: [AppComponent, UserLocationModalComponent, HomeComponent],
   imports: [
     CommonModule,
     SharedModule,
