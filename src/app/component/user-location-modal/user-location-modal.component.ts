@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Coordinate, LocationService } from 'src/app/services/location.service';
 import { GoogleMapComponent } from 'src/app/shared/google-map/google-map.component';
 
 @Component({
@@ -10,15 +11,16 @@ import { GoogleMapComponent } from 'src/app/shared/google-map/google-map.compone
 export class UserLocationModalComponent implements OnInit {
   isChooseonMap = false;
   isTrackMe = false;
-  latitude = 0.0;
-  longitude = 0.0;
+  coordinate: Coordinate = new Coordinate();
 
   constructor(
-    public modal: NgbActiveModal
+    public modal: NgbActiveModal,
+    private _locationService: LocationService
   ) { }
 
   ngOnInit(): void {
-      
+    this.coordinate = this._locationService.getUserLocation();
+    console.log(this.coordinate);
   }
 
   showMap(): void {
@@ -29,21 +31,6 @@ export class UserLocationModalComponent implements OnInit {
   getLocation() {
     this.isChooseonMap = false;
     this.isTrackMe = true;
-    console.log('get Location')
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          this.latitude = position.coords.latitude;
-          this.longitude = position.coords.longitude;
-          console.log('Latitude:', this.latitude);
-          console.log('Longitude:', this.longitude);
-        },
-        (error) => {
-          console.error('Error getting location:', error.message);
-        }
-      );
-    } else {
-      console.error('Geolocation is not available.');
-    }
+
   }
 }
