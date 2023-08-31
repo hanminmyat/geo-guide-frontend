@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   openLocationModal() {
     const modalRef = this.modalService.open(UserLocationModalComponent, {
       windowClass: 'user-location',
+      centered: true
     });
   }
 }

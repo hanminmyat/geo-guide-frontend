@@ -13,6 +13,6 @@ export class AppComponent {
   constructor(private modalService: NgbModal) { }
 
   openLocationModal() {
-    const modalRef = this.modalService.open(UserLocationModalComponent, {windowClass: 'user-location'});
+    const modalRef = this.modalService.open(UserLocationModalComponent, {windowClass: 'user-location', centered: true});
   }
 }
