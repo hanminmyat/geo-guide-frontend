@@ -1,0 +1,11 @@
+.nav-bg {
+  background-color: #140f44;
+}
+
+.location-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  height: 80px;
+}

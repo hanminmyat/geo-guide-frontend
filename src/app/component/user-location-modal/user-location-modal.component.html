@@ -1,0 +1,19 @@
+<div class="modal-header">
+		<h4 class="modal-title">Set Location</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+    <div class="col-12 my-2">
+      <button type="button" class="btn btn-primary" (click)="getLocation()">Track me</button>
+    <button type="button" class="btn btn-secondary mx-2" (click)="showMap()">Choose on map</button>
+    </div>
+    <ng-container *ngIf="isChooseonMap">
+      <app-google-map></app-google-map>
+    </ng-container>
+    <ng-container *ngIf="isTrackMe" >
+      <div><span>latitude: {{ latitude }}, longitude {{ longitude }}</span></div>
+    </ng-container>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
