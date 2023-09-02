@@ -18,7 +18,8 @@ export class UserLocationModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.coordinate = this._locationService.getUserLocation();
+    this._locationService.getUserLocation();
+    this.coordinate = this._locationService.getUserCoordinate();
     console.log(this.coordinate);
   }
 

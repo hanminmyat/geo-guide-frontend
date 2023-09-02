@@ -5,23 +5,31 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LocationService {
-  coordinate: Coordinate = new Coordinate();
+  private coordinate: Coordinate = new Coordinate();
 
-  constructor() {}
+  constructor() { }
+
+  setUserLocation(position: GeolocationPosition) {
+    this.coordinate.latitude = position.coords.latitude;
+    this.coordinate.longitutde = position.coords.longitude;
+  }
 
   getUserLocation() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          this.coordinate.latitude = position.coords.latitude;
-          this.coordinate.longitutde = position.coords.longitude;
+          this.setUserLocation(position)
         },
         (error) => {
           console.error('Error getting location:', error.message);
         }
       );
     }
-     return this.coordinate;
+    //  return this.coordinate;
+  }
+
+  getUserCoordinate() {
+    return this.coordinate;
   }
 }
 

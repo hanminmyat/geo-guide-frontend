@@ -18,7 +18,7 @@ export class GoogleMapComponent implements OnInit {
   constructor(private _locationService: LocationService) {}
 
   ngOnInit(): void {
-    this.coordinate = this._locationService.getUserLocation();
+    this.coordinate = this._locationService.getUserCoordinate();
     this.options.center = new google.maps.LatLng(
       this.coordinate.latitude,
       this.coordinate.longitutde

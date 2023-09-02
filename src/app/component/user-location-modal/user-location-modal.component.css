@@ -1,4 +1,4 @@
 ::ng-deep .user-location .modal-dialog {
-     max-width: 40%;
-     width: 60%;
+     max-width: 90%;
+     width: 600px;
 }

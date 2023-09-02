@@ -1,6 +1,6 @@
 .google-map {
   .map-container {
-    width: auto;
+    width: 600px;
     height: 600px;
   }
 }

@@ -8,16 +8,22 @@ import { SharedModule } from './shared/shared.module';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { UserLocationModalComponent } from './component/user-location-modal/user-location-modal.component';
 import { HomeComponent } from './component/home/home.component';
+import { DetailComponent } from './component/detail/detail.component';
 
 @NgModule({
-  declarations: [AppComponent, UserLocationModalComponent, HomeComponent],
+  declarations: [
+    AppComponent,
+    UserLocationModalComponent,
+    HomeComponent,
+    DetailComponent,
+  ],
   imports: [
     CommonModule,
     SharedModule,
     GoogleMapsModule,
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
