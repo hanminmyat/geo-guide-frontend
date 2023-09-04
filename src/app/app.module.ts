@@ -9,6 +9,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { UserLocationModalComponent } from './component/user-location-modal/user-location-modal.component';
 import { HomeComponent } from './component/home/home.component';
 import { DetailComponent } from './component/detail/detail.component';
+import { LocationListComponent } from './component/location-list/location-list.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { DetailComponent } from './component/detail/detail.component';
     UserLocationModalComponent,
     HomeComponent,
     DetailComponent,
+    LocationListComponent,
   ],
   imports: [
     CommonModule,

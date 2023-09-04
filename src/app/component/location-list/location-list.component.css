@@ -1,0 +1,36 @@
+.container {
+  padding: 20px 30px;
+}
+
+.shop-info {
+  background: rgba(53, 47, 68, 0.5);
+  cursor: pointer;
+  max-width: 400px;
+}
+
+.shop-extra-info {
+  display: flex;
+  background: rgb(11, 36, 71, 0.7);
+  color: white;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+}
+
+@media (max-width: 576px) {
+  .shop-extra-info {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 768px) {
+  .shop-extra-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
+
