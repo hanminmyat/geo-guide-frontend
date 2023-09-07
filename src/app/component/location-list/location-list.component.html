@@ -1,22 +1,62 @@
 <div class="container">
   <div class="row pt-2">
     <ng-container *ngFor="let location of nearbyLocations">
-      <div class="col-md-4 col-sm-12 m-2 px-0 shop-info">
-      <div class="d-flex justify-content-between align-items-center p-3">
-        <div class="flex-shrink-0">
-          <img src="{{ location.icon }}" class="img-fluid icon" alt="logo" />
+      <div class="col-md-4 col-sm-12 m-2 px-0 d-flex flex-column shop-info">
+        <div class="d-flex justify-content-between flex-fill p-3">
+          <div class="flex-shrink-0">
+            <img src="{{ location.icon }}" class="img-fluid icon" alt="logo" />
+          </div>
+          <div class="flex-grow-1 ms-3 mx-2">
+            <h6 class="d-inline">{{ location.name }}</h6>
+            <br />
+            <span style="font-size: 12px"
+              ><i class="fas fa-map-marker-alt me-1"></i>
+              {{ location.vicinity }}</span
+            >
+          </div>
         </div>
-        <div class="flex-grow-1 ms-3 mx-2">
-          <h6 class="d-inline">{{ location.name }}</h6><br/>
-          <!-- <span><i class="fa fa-hotel me-2"></i>Hotel/Loging</span> -->
+        <div class="p-2 shop-extra-info">
+          <span
+            class="m-1"
+            [ngStyle]="{ color: location.open_now ? '#08ee08' : 'gray' }"
+            ><i class="fa fa-clock me-2"></i>
+            {{ location.open_now ? "Open Now" : "Close" }}</span
+          >
+          <span class="m-1"
+            ><i class="far fa-star me-2"></i>Rating:
+            <span>{{
+              location.rating ? location.rating + "/5" : "-"
+            }}</span></span
+          >
+          <span *ngIf="location.price_level" class="m-1"
+            >Price Range:
+            <span>{{
+              location.price_level ? location.price_level : "-"
+            }}</span></span
+          >
         </div>
-        <span>{{ location.open_now ? "Open Now" : "Close" }}</span>
       </div>
-      <div class="p-2 shop-extra-info">
-        <span>Price Range: <span>{{ location.price_level ? location.price_level : '-' }}</span></span>
-        <span>Rating: <span>{{ location.rating ? location.rating + '/5' : '-' }}</span></span>
-      </div>
-    </div>
     </ng-container>
+  </div>
+  <div class="row">
+    <div class="d-flex justify-content-center">
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" (click)="resetLocations()"
+              ><i class="fa-solid fa-house"></i
+            ></a>
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              (click)="clickNextPage()"
+              [class.disabled]="isLastPage"
+              >Next</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </div>

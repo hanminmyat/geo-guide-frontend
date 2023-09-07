@@ -9,33 +9,23 @@
 </div>
 <div class="modal-body">
   <div class="col-12 my-2">
-    <button type="button" class="btn btn-primary" (click)="getLocation()">
+    <button type="button" class="btn btn-primary me-3" (click)="getLocation()">
       Track me
     </button>
-    <button type="button" class="btn btn-secondary mx-2" (click)="showMap()">
+    <button type="button" class="btn btn-secondary" (click)="showMap()">
       Choose on map
     </button>
   </div>
   <ng-container *ngIf="isChooseonMap">
-    <div class="col-12">
-    <app-google-map></app-google-map>
-    </div>
-  </ng-container>
-  <ng-container *ngIf="isTrackMe">
-    <div>
-      <span
-        >latitude: {{ coordinate.latitude }}, longitude
-        {{ coordinate.longitutde }}</span
-      >
+    <div class="mx-2 my-3 p-0">
+      <app-google-map></app-google-map>
     </div>
   </ng-container>
 </div>
 <div class="modal-footer">
-  <button
-    type="button"
-    class="btn btn-light"
-    (click)="modal.close('Close click')"
-  >
-    Close
-  </button>
+  <div class="d-flex justify-content-end" *ngIf="isChooseonMap">
+    <button type="button" class="btn btn-primary" (click)="searchLocations()">
+      Search this area
+    </button>
+  </div>
 </div>

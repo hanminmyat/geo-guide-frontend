@@ -1,4 +1,8 @@
 <div class="google-map">
-   <google-map [options]="options">
+   <google-map
+    [options]="options"
+    (mapClick)="onMapClick($event)"
+   >
+    <map-marker [position]="markerPosition"></map-marker>
    </google-map>
 </div>

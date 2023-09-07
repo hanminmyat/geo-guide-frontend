@@ -10,6 +10,11 @@ export class GoogleMapComponent implements OnInit {
   lat = 16.8565435;
   lng = 96.1208935;
   coordinate = new Coordinate();
+  markerPosition: google.maps.LatLngLiteral = {
+    lat: 0,
+    lng: 0
+  };
+
   options: google.maps.MapOptions = {
     center: new google.maps.LatLng(this.lat, this.lng),
     zoom: 14,
@@ -23,5 +28,20 @@ export class GoogleMapComponent implements OnInit {
       this.coordinate.latitude,
       this.coordinate.longitutde
     );
+  }
+
+  onMapClick(event: google.maps.MapMouseEvent): void {
+    const clickedLocation = {
+      lat: event.latLng!.lat(),
+      lng: event.latLng!.lng(),
+    };
+
+    this.options = {
+      center: new google.maps.LatLng(clickedLocation.lat, clickedLocation.lng),
+      zoom: 16,
+    };
+
+    this.markerPosition = clickedLocation;
+    this._locationService.setUserLocation(clickedLocation.lat, clickedLocation.lng);
   }
 }

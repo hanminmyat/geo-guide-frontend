@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Coordinate, LocationService } from 'src/app/services/location.service';
 
@@ -9,27 +10,30 @@ import { Coordinate, LocationService } from 'src/app/services/location.service';
 })
 export class UserLocationModalComponent implements OnInit {
   isChooseonMap = false;
-  isTrackMe = false;
   coordinate: Coordinate = new Coordinate();
 
   constructor(
     public modal: NgbActiveModal,
-    private _locationService: LocationService
+    private _locationService: LocationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this._locationService.getUserLocation();
+    this._locationService.initialUserLocation();
     this.coordinate = this._locationService.getUserCoordinate();
-    console.log(this.coordinate);
   }
 
   showMap(): void {
     this.isChooseonMap = true;
-    this.isTrackMe = false;
   }
 
   getLocation() {
     this.isChooseonMap = false;
-    this.isTrackMe = true;
+    this.searchLocations();
+  }
+
+  searchLocations(): void {
+    this.modal.close();
+    this.router.navigate(['/', 'list']);
   }
 }
