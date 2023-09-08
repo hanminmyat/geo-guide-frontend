@@ -1,1 +1,110 @@
-<p>detail works!</p>
+
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<div class="centered-content">
+    <mat-card class="card" >
+            <mat-card-header>
+                <mat-card-subtitle>Phoe Shwe La</mat-card-subtitle>
+                <mat-card-title>Restaurant</mat-card-title>
+
+                <span class="star" *ngFor="let _ of [].constructor(fullStars); let i = index">★</span>
+                <span class="star half" *ngIf="hasHalfStar">☆</span>
+                <span class="star" *ngFor="let _ of [].constructor(emptyStars); let i = index">☆</span>
+
+            </mat-card-header>
+            <!-- <mat-divider></mat-divider> -->
+
+            <mat-card-content>
+                <br>
+                <p style="font-size: 18px;">Its a burmese style cook and juice and someting and blah blah blah</p>
+                <br>
+            </mat-card-content>
+            <mat-divider></mat-divider>
+
+            <mat-card-content>
+                <br>
+        
+                <div class="container">
+
+                    <div class="first">
+                        <i class='fas fa-map-marker-alt' style='font-size:24px'></i>
+
+
+                    </div>
+                    <div class="second">
+                        <p >{{location}}</p>
+                    </div>
+            
+                    <br>
+                </div> 
+            </mat-card-content>
+            <mat-divider></mat-divider>
+
+            <mat-card-content>
+                <br>
+
+        
+                <div class="container">
+                    <div class="first">
+                        <i class='far fa-clock' style='font-size:24px'></i>
+
+                    </div>
+                    <div class="second">
+                        <p >{{open_status}}</p>
+                    </div>
+
+                    <br>
+                </div> 
+                
+            </mat-card-content>
+            <mat-divider></mat-divider>
+
+            <mat-card-content>
+                <br>
+
+        
+                <div class="container">
+                    <div class="first">
+                        <i class='fas fa-phone-alt' style='font-size:24px'></i>
+
+                    </div>
+                    <div class="second">
+                        <p >{{ph_no}}</p>
+                    </div>
+
+                    <br>
+                </div> 
+                
+            </mat-card-content>
+            <mat-divider></mat-divider>
+
+            <mat-card-content>
+                <br>
+
+        
+                <div class="container">
+                    <div class="first">
+                        <i class="fa fa-globe" style="font-size:24px"></i>
+
+                    </div>
+                    <div class="second">
+                        <p >{{web_site}}</p>
+                    </div>
+
+                    <br>
+                </div> 
+                
+            </mat-card-content>
+            <mat-divider></mat-divider>
+            <br>
+
+
+
+            <mat-card-actions class="button-container">
+                <button mat-button color="blue" style="font-size: 20px;">Review/Comment <i class='far fa-comments'></i></button>
+            </mat-card-actions>
+        
+        <!-- <mat-card-footer>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </mat-card-footer> -->
+    </mat-card>
+</div>

@@ -14,6 +14,11 @@ import { MenubarModule } from 'primeng/menubar';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DataViewModule } from 'primeng/dataview';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatCardModule} from '@angular/material/card';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -30,10 +35,6 @@ import { DataViewModule } from 'primeng/dataview';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    MenubarModule,
-    TabMenuModule,
-    ProgressSpinnerModule,
-    DataViewModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

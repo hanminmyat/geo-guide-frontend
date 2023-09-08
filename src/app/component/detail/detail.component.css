@@ -1,0 +1,57 @@
+
+.card {
+
+    color: blue;
+    background-color: rgba(255, 255, 255, 0.932);
+    height: 460px;
+    width: 450px;
+  }
+
+.centered-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;  /* 100% of the viewport height */
+  }
+mat-card-subtitle {
+    color: blue;  /* Change this to whatever color you want */
+}
+
+
+  /* Button */
+.button-container {
+
+    justify-content: right;
+    color: blue;
+
+}
+
+/* Rating */
+.star {
+  font-size: 24px;
+  color: gold;
+}
+
+.half::before {
+  content: '★'; 
+  position: absolute;
+  z-index: 1;
+  clip-path: polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%);
+
+}
+
+/* For the logo */
+.container {
+  display: flex;           /* Use the flex display mode */
+  align-items: center;     /* Vertically center the items */
+}
+
+.first {
+  height:35px;
+  margin-right: 10px;      /* Add some space between the logo and the text */
+}
+
+.second {
+  font-size:20px;
+  margin: 0;               /* Remove any default margins */
+}
