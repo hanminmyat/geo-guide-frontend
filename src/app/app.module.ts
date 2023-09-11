@@ -11,14 +11,10 @@ import { HomeComponent } from './component/home/home.component';
 import { DetailComponent } from './component/detail/detail.component';
 import { LocationListComponent } from './component/location-list/location-list.component';
 import { MenubarModule } from 'primeng/menubar';
-import { TabMenuModule } from 'primeng/tabmenu';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { DataViewModule } from 'primeng/dataview';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
-import {MatCardModule} from '@angular/material/card';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -35,6 +31,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    MenubarModule,
+    ProgressSpinnerModule,
+    MatDividerModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
