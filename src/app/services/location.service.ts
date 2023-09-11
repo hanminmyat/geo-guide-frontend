@@ -24,20 +24,20 @@ export class LocationService {
   }
 
   initialUserLocation() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          this.setUserLocation(
-            position.coords.latitude,
-            position.coords.longitude
-          );
-        },
-        (error) => {
-          console.error('Error getting location:', error.message);
-          alert('Please Allow Location Service!');
-        }
-      );
-    }
+    // if ('geolocation' in navigator) {
+    //   navigator.geolocation.getCurrentPosition(
+    //     (position) => {
+    //       this.setUserLocation(
+    //         position.coords.latitude,
+    //         position.coords.longitude
+    //       );
+    //     },
+    //     (error) => {
+    //       console.error('Error getting location:', error.message);
+    //       alert('Please Allow Location Service!');
+    //     }
+    //   );
+    // }
   }
 
   getUserCoordinate() {
@@ -66,7 +66,7 @@ export class NearbyLocation {
   icon = '';
   name: string = '';
   place_id: string = '';
-  type: any;
+  types: any;
   rating: number = 0;
   price_level = 0;
   vicinity: string = '';

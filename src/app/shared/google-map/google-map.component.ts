@@ -24,6 +24,7 @@ export class GoogleMapComponent implements OnInit {
 
   ngOnInit(): void {
     this.coordinate = this._locationService.getUserCoordinate();
+    this.markerPosition = { lat: this.coordinate.latitude, lng: this.coordinate.longitutde };
     this.options.center = new google.maps.LatLng(
       this.coordinate.latitude,
       this.coordinate.longitutde

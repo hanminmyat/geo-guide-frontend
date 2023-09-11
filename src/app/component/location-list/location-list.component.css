@@ -20,6 +20,14 @@
   height: 40px;
 }
 
+::ng-deep .activeItem {
+  background-color: #eff6ff;
+
+  * {
+     color: #1D4ED8 !important;
+  }
+}
+
 @media (max-width: 576px) {
   .shop-extra-info {
     display: flex;

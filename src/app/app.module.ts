@@ -10,6 +10,10 @@ import { UserLocationModalComponent } from './component/user-location-modal/user
 import { HomeComponent } from './component/home/home.component';
 import { DetailComponent } from './component/detail/detail.component';
 import { LocationListComponent } from './component/location-list/location-list.component';
+import { MenubarModule } from 'primeng/menubar';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { DataViewModule } from 'primeng/dataview';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,10 @@ import { LocationListComponent } from './component/location-list/location-list.c
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    MenubarModule,
+    TabMenuModule,
+    ProgressSpinnerModule,
+    DataViewModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

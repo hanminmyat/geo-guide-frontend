@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Coordinate, LocationService } from 'src/app/services/location.service';
@@ -11,6 +11,7 @@ import { Coordinate, LocationService } from 'src/app/services/location.service';
 export class UserLocationModalComponent implements OnInit {
   isChooseonMap = false;
   coordinate: Coordinate = new Coordinate();
+  @Output() searchCustomLocationEvent = new EventEmitter<boolean>();
 
   constructor(
     public modal: NgbActiveModal,
