@@ -18,7 +18,10 @@
   </div>
   <ng-container *ngIf="isChooseonMap">
     <div class="mx-2 my-3 p-0">
-      <app-google-map></app-google-map>
+      <app-google-map
+        [lat]="this.coordinate.latitude"
+        [lng]="this.coordinate.longitutde"
+      ></app-google-map>
     </div>
   </ng-container>
 </div>

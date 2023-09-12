@@ -1,250 +1,170 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 col-md-6 col-sm-12 mt-4 detail-info-container">
+      <div class="card">
+        <div class="col">
+          <div class="container px-5 py-4">
+            <div class="content-header">
+              <div class="d-flex justify-content-between">
+                <h1>{{ detailInfo?.name }}</h1>
+                <span
+                  class="m-1"
+                  [ngStyle]="{
+                    color: detailInfo?.open_now ? '#2ccf6d' : 'gray'
+                  }"
+                  style="font-size: 14px"
+                  ><i class="fa fa-clock me-2"></i>
+                  {{ detailInfo?.open_now ? "Open Now" : "Close" }}</span
+                >
+              </div>
+              <p>{{ detailInfo?.address }}</p>
+            </div>
+            <hr />
+            <div>
+              <h5>Opening Hours</h5>
+              <ng-container *ngFor="let hour of detailInfo?.open_hours">
+                <span>{{ hour }}</span
+                ><br />
+              </ng-container>
+              <br />
+              <h5>Contact Number</h5>
+              <p>{{ detailInfo?.phoneNo }}</p>
+              <h5>Rating</h5>
+              <p>{{ detailInfo?.rating + "/5" }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-<div class="centered-content">
-    <mat-card class="card" >
-            <mat-card-header>
-                <mat-card-subtitle>Phoe Shwe La</mat-card-subtitle>
-                <mat-card-title>Restaurant</mat-card-title>
+    <div class="col-6 col-md-6 col-sm-12 mt-4" *ngIf="this.detailInfo?.lat_lng">
+      <app-google-map
+        [lat]="this.detailInfo?.lat_lng.lat"
+        [lng]="this.detailInfo?.lat_lng.lng"
+        [zoomPixel]="18"
+      ></app-google-map>
+    </div>
 
-                <span class="star" *ngFor="let _ of [].constructor(fullStars); let i = index">★</span>
-                <span class="star half" *ngIf="hasHalfStar">☆</span>
-                <span class="star" *ngFor="let _ of [].constructor(emptyStars); let i = index">☆</span>
-
-            </mat-card-header>
-            <!-- <mat-divider></mat-divider> -->
-
-            <mat-card-content>
+    <!-- <p-splitter [style]="{ height: '480px' }" [minSizes]="[30,40]">
+          <ng-template pTemplate>
+            <div class="col">
+              <div class="container px-5 py-4">
+                <div class="content-header">
+                <h1>PhoeShweLa</h1>
+                <p>Parami Road</p>
+              </div>
+              <hr />
+              <div>
+                <h5>Opening Hours</h5>
+                <ul>
+                  <li>Mon: 10:00AM-10:00PM</li>
+                  <li>Tue: 10:00AM-10:00PM</li>
+                  <li>Wed: 10:00AM-10:00PM</li>
+                  <li>Thu: 10:00AM-10:00PM</li>
+                  <li>Fri: 10:00AM-10:00PM</li>
+                  <li>Sat: 10:00AM-10:00PM</li>
+                  <li>Sun: 10:00AM-10:00PM</li>
+                </ul>
                 <br>
-                <p style="font-size: 18px;">Its a burmese style cook and juice and someting and blah blah blah</p>
-                <br>
-            </mat-card-content>
-            <mat-divider></mat-divider>
-
-            <mat-card-content>
-                <br>
-        
-                <div class="container">
-
-                    <div class="first">
-                        <i class='fas fa-map-marker-alt' style='font-size:24px'></i>
-
-                    </div>
-                    <div class="second">
-                        <p >{{location}}</p>
-                    </div>
-            
-                    <br>
-                </div> 
-            </mat-card-content>
-            <mat-divider></mat-divider>
-
-            <mat-card-content>
-                <br>
-
-        
-                <div class="container">
-                    <div class="first">
-                        <i class='far fa-clock' style='font-size:24px'></i>
-
-                    </div>
-                    <div class="second">
-                        <p >{{open_status}}</p>
-                    </div>
-
-                    <br>
-                </div> 
-                
-            </mat-card-content>
-            <mat-divider></mat-divider>
-
-            <mat-card-content>
-                <br>
-
-        
-                <div class="container">
-                    <div class="first">
-                        <i class='fas fa-phone-alt' style='font-size:24px'></i>
-
-                    </div>
-                    <div class="second">
-                        <p >{{ph_no}}</p>
-                    </div>
-
-                    <br>
-                </div> 
-                
-            </mat-card-content>
-            <mat-divider></mat-divider>
-
-            <mat-card-content>
-                <br>
-
-        
-                <div class="container">
-                    <div class="first">
-                        <i class="fa fa-globe" style="font-size:24px"></i>
-
-                    </div>
-                    <div class="second">
-                        <p >{{web_site}}</p>
-                    </div>
-
-                    <br>
-                </div> 
-                
-            </mat-card-content>
-            <mat-divider></mat-divider>
-            <br>
-
-
-
-            <!-- <mat-card-actions class="button-container">
-                <button mat-button color="blue" style="font-size: 20px;">Review/Comment <i class='far fa-comments'></i></button>
-            </mat-card-actions> -->
-        
-        <!-- <mat-card-footer>
-            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-        </mat-card-footer> -->
-    </mat-card>
+                <h5>Contact Number</h5>
+                <p>095648534</p>
+                <h5>Rating</h5>
+                <p>4 out of 5</p>
+              </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template pTemplate>
+            <div class="col flex align-items-center justify-content-center">
+              <app-google-map></app-google-map>
+            </div>
+          </ng-template>
+        </p-splitter> -->
+  </div>
+  <div class="col-12"></div>
 </div>
 
+<div class="centered-content">
+  <mat-card class="recommend-card card">
+    <mat-card-header>
+      <mat-card-subtitle>Phoe Shwe La</mat-card-subtitle>
+      <mat-card-title>Restaurant</mat-card-title>
 
-<!doctype html>
-<html lang="en">
+      <span
+        class="star"
+        *ngFor="let _ of [].constructor(fullStars); let i = index"
+        >★</span
+      >
+      <span class="star half" *ngIf="hasHalfStar">☆</span>
+      <span
+        class="star"
+        *ngFor="let _ of [].constructor(emptyStars); let i = index"
+        >☆</span
+      >
+    </mat-card-header>
+    <!-- <mat-divider></mat-divider> -->
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <mat-card-content>
+      <br />
+      <p style="font-size: 18px">
+        Its a burmese style cook and juice and someting and blah blah blah
+      </p>
+      <br />
+    </mat-card-content>
+    <mat-divider></mat-divider>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+    <mat-card-content>
+      <br />
 
-<body>
+      <div class="d-flex">
+        <div class="first">
+          <i class="fas fa-map-marker-alt" style="font-size: 24px"></i>
+        </div>
+        <div class="second">
+          <p>{{ location }}</p>
+        </div>
 
-  <!-- Header -->
-  <div class="header">
-    <h2>You may also like </h2>
-  </div>
-
-  <!-- Photo Grid -->
-  <!-- Row 1 -->
-  <div class="card-deck">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">MinLan</h5>
-        <ul class="list-group">
-          <li class="list-group-item list-group-item-success"><i class="fa fa-map-marker" style="font-size:20px;"></i> Location</li>
-          <li class="list-group-item list-group-item-success"><i class="fa fa-clock-o" style="font-size:20px;"></i> Duration</li>
-          <li class="list-group-item list-group-item-success">
-
-            <ul class="list-unstyled list-inline mb-0">
-                <li class="list-inline-item me-0">
-                  <i class="fas fa-star text-warning fa-xs"> </i>
-                </li>
-                <li class="list-inline-item me-0">
-                  <i class="fas fa-star text-warning fa-xs"></i>
-                </li>
-                <li class="list-inline-item me-0">
-                  <i class="fas fa-star text-warning fa-xs"></i>
-                </li>
-                <li class="list-inline-item me-0">
-                  <i class="fas fa-star text-warning fa-xs"></i>
-                </li>
-                <li class="list-inline-item">
-                  <i class="fas fa-star-half-alt text-warning fa-xs"></i>
-                </li>
-                <li class="list-inline-item">
-                  <p class="text-muted">4.5</p>
-                </li>
-              </ul>
-
-          </li>
-        </ul>
-
+        <br />
       </div>
-      
-    </div>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">PhoShweLa</h5>
-        <ul class="list-group">
-          <li class="list-group-item list-group-item-success"><i class="fa fa-map-marker" style="font-size:20px;"></i> Location</li>
-          <li class="list-group-item list-group-item-success"><i class="fa fa-clock-o" style="font-size:20px;"></i> Duration</li>
-          <li class="list-group-item list-group-item-success">
-            
+    </mat-card-content>
+    <mat-divider></mat-divider>
 
-                <ul class="list-unstyled list-inline mb-0">
-                    <li class="list-inline-item me-0">
-                      <i class="fas fa-star text-warning fa-xs"> </i>
-                    </li>
-                    <li class="list-inline-item me-0">
-                      <i class="fas fa-star text-warning fa-xs"></i>
-                    </li>
-                    <li class="list-inline-item me-0">
-                      <i class="fas fa-star text-warning fa-xs"></i>
-                    </li>
-                    <li class="list-inline-item me-0">
-                      <i class="fas fa-star text-warning fa-xs"></i>
-                    </li>
-                    <li class="list-inline-item">
-                      <i class="fas fa-star-half-alt text-warning fa-xs"></i>
-                    </li>
-                    <li class="list-inline-item">
-                      <p class="text-muted">4.5</p>
-                    </li>
-                  </ul>
-    
-              </li>
-        </ul>
+    <mat-card-content>
+      <br />
 
+      <div class="d-flex">
+        <div class="first">
+          <i class="far fa-clock" style="font-size: 24px"></i>
+        </div>
+        <div class="second">
+          <p>{{ open_status }}</p>
+        </div>
+
+        <br />
       </div>
-      
-    </div>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">HaMoNi</h5>
-        <ul class="list-group">
-          <li class="list-group-item list-group-item-success"><i class="fa fa-map-marker" style="font-size:20px;"></i> Location</li>
-          <li class="list-group-item list-group-item-success"><i class="fa fa-clock-o" style="font-size:20px;"></i> Duration</li>
-          <li class="list-group-item list-group-item-success">
-           
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <br />
 
-                <ul class="list-unstyled list-inline mb-0">
-                    <li class="list-inline-item me-0">
-                      <i class="fas fa-star text-warning fa-xs"> </i>
-                    </li>
-                    <li class="list-inline-item me-0">
-                      <i class="fas fa-star text-warning fa-xs"></i>
-                    </li>
-                    <li class="list-inline-item me-0">
-                      <i class="fas fa-star text-warning fa-xs"></i>
-                    </li>
-                    <li class="list-inline-item me-0">
-                      <i class="fas fa-star text-warning fa-xs"></i>
-                    </li>
-                    <li class="list-inline-item">
-                      <i class="fas fa-star-half-alt text-warning fa-xs"></i>
-                    </li>
-                    <li class="list-inline-item">
-                      <p class="text-muted">4.5</p>
-                    </li>
-                  </ul>
-    
-              
-          </li>
-        </ul>
+      <div class="d-flex">
+        <div class="first">
+          <i class="fas fa-phone-alt" style="font-size: 24px"></i>
+        </div>
+        <div class="second">
+          <p>{{ ph_no }}</p>
+        </div>
 
+        <br />
       </div>
-      
-    </div>
-  </div>
-  
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
+    </mat-card-content>
 
-</html>
+    <!-- <mat-card-actions class="button-container">
+                <button mat-button color="blue" style="font-size: 20px;">Review/Comment <i class='far fa-comments'></i></button>
+            </mat-card-actions> -->
+
+    <!-- <mat-card-footer>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </mat-card-footer> -->
+  </mat-card>
+</div>

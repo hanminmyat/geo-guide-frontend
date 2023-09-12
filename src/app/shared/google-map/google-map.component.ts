@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Coordinate, LocationService } from 'src/app/services/location.service';
+import { GoogleMap } from '@angular/google-maps';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-google-map',
@@ -7,28 +9,38 @@ import { Coordinate, LocationService } from 'src/app/services/location.service';
   styleUrls: ['./google-map.component.css'],
 })
 export class GoogleMapComponent implements OnInit {
-  lat = 16.8565435;
-  lng = 96.1208935;
+  @Input() lat = 16.8565335;
+  @Input() lng = 96.1208935;
+  @Input() zoomPixel = 15;
   coordinate = new Coordinate();
+
   markerPosition: google.maps.LatLngLiteral = {
     lat: 0,
     lng: 0
   };
 
   options: google.maps.MapOptions = {
-    center: new google.maps.LatLng(this.lat, this.lng),
-    zoom: 14,
+    zoom: 16,
   };
+
+  map: GoogleMap | undefined;
 
   constructor(private _locationService: LocationService) {}
 
   ngOnInit(): void {
-    this.coordinate = this._locationService.getUserCoordinate();
-    this.markerPosition = { lat: this.coordinate.latitude, lng: this.coordinate.longitutde };
-    this.options.center = new google.maps.LatLng(
-      this.coordinate.latitude,
-      this.coordinate.longitutde
-    );
+    this.initializeMap();
+    // this.markerPosition = { lat: this.coordinate.latitude, lng: this.coordinate.longitutde };
+    // this.options.center = new google.maps.LatLng(
+    //   this.coordinate.latitude,
+    //   this.coordinate.longitutde
+    // );
+  }
+
+  initializeMap() {
+    this.options.center = new google.maps.LatLng(this.lat, this.lng);
+    this.markerPosition.lat = this.lat;
+    this.markerPosition.lng = this.lng;
+    this.options.zoom = this.zoomPixel;
   }
 
   onMapClick(event: google.maps.MapMouseEvent): void {
@@ -43,6 +55,9 @@ export class GoogleMapComponent implements OnInit {
     };
 
     this.markerPosition = clickedLocation;
-    this._locationService.setUserLocation(clickedLocation.lat, clickedLocation.lng);
+    this._locationService.setUserLocation(
+      clickedLocation.lat,
+      clickedLocation.lng
+    );
   }
 }

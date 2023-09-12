@@ -1,29 +1,25 @@
-
-.card {
-
-    color: blue;
-    background-color: rgba(255, 255, 255, 0.932);
-    height: 460px;
-    width: 450px;
-  }
-
-.centered-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;  /* 100% of the viewport height */
-  }
-mat-card-subtitle {
-    color: blue;  /* Change this to whatever color you want */
+.recommend-card {
+  color: blue;
+  background-color: rgba(255, 255, 255, 0.932);
+  padding: 15px;
+  width: 450px;
 }
 
+.centered-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 100% of the viewport height */
+}
 
-  /* Button */
+mat-card-subtitle {
+  color: blue; /* Change this to whatever color you want */
+}
+
+/* Button */
 .button-container {
-
-    justify-content: right;
-    color: blue;
-
+  justify-content: right;
+  color: blue;
 }
 
 /* Rating */
@@ -33,100 +29,40 @@ mat-card-subtitle {
 }
 
 .half::before {
-  content: '★'; 
+  content: "★";
   position: absolute;
   z-index: 1;
   clip-path: polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%);
-
-}
-
-/* For the logo */
-.container {
-  display: flex;           /* Use the flex display mode */
-  align-items: center;     /* Vertically center the items */
 }
 
 .first {
-  height:35px;
-  margin-right: 10px;      /* Add some space between the logo and the text */
+  height: 35px;
+  margin-right: 10px; /* Add some space between the logo and the text */
 }
 
 .second {
-  font-size:20px;
-  margin: 0;               /* Remove any default margins */
+  font-size: 20px;
+  margin: 0; /* Remove any default margins */
 }
 
-
-
-
-body {
-  font-family: 'Montserrat';
-  font-style: Italic;
-  /*background-image: url("https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");*/
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding:20px;
-
-
+.detail-info-container {
+  height: 480px;
 }
 
-.header {
-  text-align: center;
-  padding: 20px;
-  font-size:20px;
-}
-
-/* Responsive layout - makes a two column-layout instead of four columns */
-@media (max-width: 800px) {
-  .column {
-    flex: 46%;
-    max-width: 46%;
+@media (max-width: 576px) {
+  ::ng-deep .google-map {
+    .map-container {
+      height: 400px !important;
+      width: 280px !important;
+    }
   }
 }
 
-.card {
-  opacity: 0.8;
-  filter: alpha(opacity=60);
-
-}
-.card-title {
-  font-weight:bold;
-  text-align: center;
-}
-.card-text {
-  text-align: justify;
-}
-
-.modal-header {
-  background-image: linear-gradient(#7FDBFF,white);
-}
-.modal-footer {
-  background-image: linear-gradient(white,#7FDBFF);
-}
-#left-panel-link {
-  position: relative;
-  left: 5%;
-  background-color: #555;
-  color: white;
-  font-size: 16px;
-  padding: 12px 20px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-#right-panel-link {
-  position: absolute;
-  right: 10%;
-  background-color: #555;
-  color: white;
-  font-size: 16px;
-  padding: 12px 20px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-.sep {
-  height: 25px;
+@media (min-width: 768px) {
+  ::ng-deep .google-map {
+    .map-container {
+      height: 480px !important;
+      width: 100% !important;
+    }
+  }
 }

@@ -16,13 +16,16 @@
       </div>
     </ng-container>
 
-    <ng-container *ngIf="filteredLocations.length == 0">
+    <ng-container *ngIf="filteredLocations.length == 0 && !showSpinner">
       <h6>No Result Found</h6>
     </ng-container>
 
     <ng-container *ngIf="!showSpinner">
       <ng-container *ngFor="let location of filteredLocations">
-        <div class="col-md-4 col-sm-12 m-2 px-0 d-flex flex-column shop-info">
+        <div
+          class="col-md-4 col-sm-12 m-2 px-0 d-flex flex-column shop-info"
+          (click)="showDetail(location.place_id)"
+        >
           <div class="d-flex justify-content-between flex-fill p-3">
             <div class="flex-shrink-0">
               <img
@@ -32,9 +35,9 @@
               />
             </div>
             <div class="flex-grow-1 ms-3 mx-2">
-              <h6 class="d-inline">{{ location.name }}</h6>
+              <h4 class="d-inline">{{ location.name }}</h4>
               <br />
-              <span style="font-size: 12px"
+              <span style="font-size: 11px"
                 ><i class="fas fa-map-marker-alt me-1"></i>
                 {{ location.vicinity }}</span
               >
@@ -43,7 +46,7 @@
           <div class="p-2 shop-extra-info">
             <span
               class="m-1"
-              [ngStyle]="{ color: location.open_now ? '#08ee08' : 'gray' }"
+              [ngStyle]="{ color: location.open_now ? '#2ccf6d' : 'gray' }"
               ><i class="fa fa-clock me-2"></i>
               {{ location.open_now ? "Open Now" : "Close" }}</span
             >

@@ -50,7 +50,14 @@ export class LocationService {
     nextpage_token: string
   ): Observable<any> {
     return this.http.get(
-      `${this.backend_baseUrl}/api/nearby_locations?lat=${this.coordinate.latitude}&log=${this.coordinate.longitutde}&distance=${distance}&type=${type}&nextpage_token=${nextpage_token}`,
+      `${this.backend_baseUrl}/api/nearby-locations?lat=${this.coordinate.latitude}&log=${this.coordinate.longitutde}&distance=${distance}&type=${type}&nextpage_token=${nextpage_token}`,
+      { headers: this.headers }
+    );
+  }
+
+  getLocationDetail(placeId: string): Observable<any> {
+    return this.http.get(
+      `${this.backend_baseUrl}/api/location-detail?placeId=${placeId}`,
       { headers: this.headers }
     );
   }
@@ -71,4 +78,16 @@ export class NearbyLocation {
   price_level = 0;
   vicinity: string = '';
   open_now = false;
+}
+
+export class LocationDetail {
+  name: string = '';
+  logo_or_image = '';
+  lat_lng: any;
+  phoneNo = '';
+  open_now = false;
+  address = '';
+  rating = '';
+  open_hours = [];
+  top_reviews = [];
 }

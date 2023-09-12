@@ -12,9 +12,11 @@ import { DetailComponent } from './component/detail/detail.component';
 import { LocationListComponent } from './component/location-list/location-list.component';
 import { MenubarModule } from 'primeng/menubar';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import {MatButtonModule} from '@angular/material/button';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
+import { NotFoundComponent } from './component/not-found/not-found.component';
+import { SplitterModule } from 'primeng/splitter';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { MatCardModule } from '@angular/material/card';
     HomeComponent,
     DetailComponent,
     LocationListComponent,
+    NotFoundComponent,
   ],
   imports: [
     CommonModule,
@@ -35,6 +38,7 @@ import { MatCardModule } from '@angular/material/card';
     ProgressSpinnerModule,
     MatDividerModule,
     MatCardModule,
+    SplitterModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

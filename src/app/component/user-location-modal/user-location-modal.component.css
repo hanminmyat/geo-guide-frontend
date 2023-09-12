@@ -1,4 +1,22 @@
 ::ng-deep .user-location .modal-dialog {
-     max-width: 90%;
-     width: 600px;
+  max-width: 90%;
+  width: 600px;
+}
+
+@media (max-width: 576px) {
+  ::ng-deep .google-map {
+    .map-container {
+      height: 400px !important;
+      width: 280px !important;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  ::ng-deep .google-map {
+    .map-container {
+      height: 400px !important;
+      width: 550px !important;
+    }
+  }
 }

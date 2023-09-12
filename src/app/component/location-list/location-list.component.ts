@@ -4,6 +4,7 @@ import {
   NearbyLocation,
 } from 'src/app/services/location.service';
 import { MenuItem, MenuItemCommandEvent } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-location-list',
@@ -11,7 +12,7 @@ import { MenuItem, MenuItemCommandEvent } from 'primeng/api';
   styleUrls: ['./location-list.component.css'],
 })
 export class LocationListComponent implements OnInit {
-  distance = 50000; // default radius
+  distance = 10000; // default radius
   type = '';
   open_status: boolean | undefined;
   isLastPage = false;
@@ -27,7 +28,10 @@ export class LocationListComponent implements OnInit {
 
   showSpinner = false;
 
-  constructor(private _locationService: LocationService) {}
+  constructor(
+    private _locationService: LocationService,
+    private route: Router
+  ) {}
 
   ngOnInit(): void {
     this.getLocations();
@@ -216,6 +220,10 @@ export class LocationListComponent implements OnInit {
     }
     let targetItem = event.item as MenuItem;
     this.activeStatusItemIndex = Number(targetItem.tabindex);
+  }
+
+  showDetail(id: string) {
+    this.route.navigate(['/detail', id]);
   }
 
   initializeMenuItems(): void {
