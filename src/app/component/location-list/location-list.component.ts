@@ -19,6 +19,7 @@ export class LocationListComponent implements OnInit {
   nextPageToken = '';
   nearbyLocations: NearbyLocation[] = [];
   filteredLocations: NearbyLocation[] = [];
+  topFiveLocations: NearbyLocation[] = [];
   items: MenuItem[] = [];
 
   activeCategoryItemIndex: number = -1;
@@ -34,6 +35,7 @@ export class LocationListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this._locationService.checkUserLocation();
     this.getLocations();
     this.initializeMenuItems();
   }
@@ -69,19 +71,7 @@ export class LocationListComponent implements OnInit {
       }
     });
 
-    if (this.activeRatingItemIndex == 0) {
-      results.sort(
-        (locationA, locationB) => locationB.rating - locationA.rating
-      );
-    } else if (this.activeCategoryItemIndex == 1) {
-      results.sort(
-        (locationA, locationB) => locationA.rating - locationB.rating
-      );
-    }
-
-    if (this.activeStatusItemIndex == 0) {
-      results.sort((a, b) => (b.open_now ? 1 : -1));
-    }
+    results = this.sortFilteredLocations(results);
 
     this.filteredLocations.push(...results);
 
@@ -90,6 +80,30 @@ export class LocationListComponent implements OnInit {
     } else {
       this.showSpinner = false;
     }
+  }
+
+  sortFilteredLocations(list: NearbyLocation[]): NearbyLocation[] {
+    if (this.activeStatusItemIndex == 0) {
+      list = list.filter((location) => location.open_now == true);
+    }
+
+    if (this.activeRatingItemIndex == 0) {
+      list.sort((locationA, locationB) => locationB.rating - locationA.rating);
+    } else if (this.activeRatingItemIndex == 1) {
+      list.sort((locationA, locationB) => locationA.rating - locationB.rating);
+    }
+    return list;
+  }
+
+  getMostRecommendLists(placeIdToOmit: string) {
+    this.topFiveLocations = this.filteredLocations
+      .filter(
+        (location) => location.open_now && location.place_id != placeIdToOmit
+      )
+      .sort((a, b) => b.rating - a.rating)
+      .slice(0, 5);
+
+    this._locationService.setRelatedRecommendLocations(this.topFiveLocations);
   }
 
   resetFilter(): void {
@@ -155,28 +169,14 @@ export class LocationListComponent implements OnInit {
     this.getLocations();
   }
 
-  showCategoryModal(event: MenuItemCommandEvent) {}
-
   sortByRating(event: MenuItemCommandEvent) {
     this.handleActiveRatingMenuItemStyle(event);
-
-    if (event.item?.tabindex == '0') {
-      this.filteredLocations.sort(
-        (locationA, locationB) => locationB.rating - locationA.rating
-      );
-    } else {
-      this.filteredLocations.sort(
-        (locationA, locationB) => locationA.rating - locationB.rating
-      );
-    }
+    this.filteredLocations = this.sortFilteredLocations(this.filteredLocations);
   }
 
   filterByStatus(event: MenuItemCommandEvent) {
     this.handleActiveStatusMenuItemStyle(event);
-
-    if (event.item?.tabindex == '0') {
-      this.filteredLocations.sort((a, b) => (b.open_now ? 1 : -1));
-    }
+    this.filteredLocations = this.sortFilteredLocations(this.filteredLocations);
   }
 
   handleActiveCategoryMenuItemStyle(event: MenuItemCommandEvent) {
@@ -223,6 +223,7 @@ export class LocationListComponent implements OnInit {
   }
 
   showDetail(id: string) {
+    this.getMostRecommendLists(id);
     this.route.navigate(['/detail', id]);
   }
 
@@ -274,14 +275,6 @@ export class LocationListComponent implements OnInit {
             icon: 'fas fa-credit-card',
             tabindex: '6',
             command: this.filterByCategory.bind(this),
-          },
-          {
-            separator: true,
-          },
-          {
-            label: 'More',
-            icon: 'fas fa-ellipsis-h',
-            command: this.showCategoryModal,
           },
         ],
       },

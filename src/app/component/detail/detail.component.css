@@ -9,7 +9,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* 100% of the viewport height */
+}
+
+.mat-mdc-card-header {
+  display:flex;
+  padding:16px 16px;
 }
 
 mat-card-subtitle {
@@ -36,12 +40,12 @@ mat-card-subtitle {
 }
 
 .first {
-  height: 35px;
+  height: 30px;
   margin-right: 10px; /* Add some space between the logo and the text */
 }
 
 .second {
-  font-size: 20px;
+  font-size: 14px;
   margin: 0; /* Remove any default margins */
 }
 
@@ -56,6 +60,29 @@ mat-card-subtitle {
       width: 280px !important;
     }
   }
+
+  .centered-content {
+    display: block;
+  }
+
+  .related-locations-card {
+    width: 350px;
+    height: 300px;
+  }
+
+.scrolling-wrapper-flexbox {
+  display: block;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card {
+    flex: 0 0 auto;
+  }
+}
 }
 
 @media (min-width: 768px) {
@@ -65,4 +92,24 @@ mat-card-subtitle {
       width: 100% !important;
     }
   }
+
+  .related-locations-card {
+    width: 450px;
+    height: 300px;
+  }
+
+.scrolling-wrapper-flexbox {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card {
+    flex: 0 0 auto;
+  }
 }
+}
+

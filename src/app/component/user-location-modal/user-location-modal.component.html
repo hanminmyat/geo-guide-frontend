@@ -9,7 +9,12 @@
 </div>
 <div class="modal-body">
   <div class="col-12 my-2">
-    <button type="button" class="btn btn-primary me-3" (click)="getLocation()">
+    <button
+      type="button"
+      class="btn btn-primary me-3"
+      (click)="trackUserLocation()"
+      [disabled]="!isUserLocationAllowed"
+    >
       Track me
     </button>
     <button type="button" class="btn btn-secondary" (click)="showMap()">
@@ -18,10 +23,7 @@
   </div>
   <ng-container *ngIf="isChooseonMap">
     <div class="mx-2 my-3 p-0">
-      <app-google-map
-        [lat]="this.coordinate.latitude"
-        [lng]="this.coordinate.longitutde"
-      ></app-google-map>
+      <app-google-map [lat]="16.855863" [lng]="96.134881"></app-google-map>
     </div>
   </ng-container>
 </div>

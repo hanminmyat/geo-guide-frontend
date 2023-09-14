@@ -38,7 +38,7 @@ import { SplitterModule } from 'primeng/splitter';
     ProgressSpinnerModule,
     MatDividerModule,
     MatCardModule,
-    SplitterModule,
+    SplitterModule
   ],
   providers: [],
   bootstrap: [AppComponent],

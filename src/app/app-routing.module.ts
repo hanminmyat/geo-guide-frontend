@@ -7,8 +7,8 @@ import { NotFoundComponent } from './component/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'detail/:id', component: DetailComponent },
   { path: 'list', component: LocationListComponent },
+  { path: 'detail/:id', component: DetailComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

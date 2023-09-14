@@ -1,170 +1,129 @@
 <div class="container">
-  <div class="row">
-    <div class="col-6 col-md-6 col-sm-12 mt-4 detail-info-container">
-      <div class="card">
-        <div class="col">
-          <div class="container px-5 py-4">
-            <div class="content-header">
-              <div class="d-flex justify-content-between">
-                <h1>{{ detailInfo?.name }}</h1>
-                <span
-                  class="m-1"
-                  [ngStyle]="{
-                    color: detailInfo?.open_now ? '#2ccf6d' : 'gray'
-                  }"
-                  style="font-size: 14px"
-                  ><i class="fa fa-clock me-2"></i>
-                  {{ detailInfo?.open_now ? "Open Now" : "Close" }}</span
-                >
-              </div>
-              <p>{{ detailInfo?.address }}</p>
+  <div class="row my-4">
+    <div class="col-lg-6 col-md-12 col-sm-12 mt-4">
+      <div class="card detail-info-container">
+        <div class="container px-5 py-4">
+          <div class="content-header">
+            <div class="d-flex justify-content-between">
+              <h2>{{ detailInfo?.name }}</h2>
+              <span
+                class="m-1"
+                [ngStyle]="{
+                  color: detailInfo?.open_now ? '#2ccf6d' : 'gray'
+                }"
+                style="font-size: 14px"
+                ><i class="fa fa-clock me-2"></i>
+                {{ detailInfo?.open_now ? "Open Now" : "Close" }}</span
+              >
             </div>
-            <hr />
-            <div>
-              <h5>Opening Hours</h5>
-              <ng-container *ngFor="let hour of detailInfo?.open_hours">
-                <span>{{ hour }}</span
-                ><br />
-              </ng-container>
-              <br />
-              <h5>Contact Number</h5>
-              <p>{{ detailInfo?.phoneNo }}</p>
-              <h5>Rating</h5>
-              <p>{{ detailInfo?.rating + "/5" }}</p>
+            <p>{{ detailInfo?.address }}</p>
+          </div>
+          <hr />
+          <div>
+            <h4>Opening Hours</h4>
+            <ng-container *ngIf="detailInfo?.open_hours?.length == 0"
+              ><span>-</span></ng-container
+            >
+            <ng-container *ngFor="let hour of detailInfo?.open_hours">
+              <span>{{ hour }}</span
+              ><br />
+            </ng-container>
+            <br />
+            <h4>Contact Number</h4>
+            <p>{{ detailInfo?.phoneNo }}</p>
+            <div class="d-flex justify-content-between">
+              <div>
+                <h4>Rating</h4>
+                <p>{{ detailInfo?.rating + "/5" }}</p>
+              </div>
+              <div class="d-flex align-items-center">
+              <button class="btn btn-outline-success" style="cursor: none">
+                <i class="fas fa-car pe-2"></i> {{ this.estimateTime }}
+              </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="col-6 col-md-6 col-sm-12 mt-4" *ngIf="this.detailInfo?.lat_lng">
+    <div
+      class="col-lg-6 col-md-12 col-sm-12 mt-4"
+      *ngIf="this.detailInfo?.lat_lng"
+    >
       <app-google-map
         [lat]="this.detailInfo?.lat_lng.lat"
         [lng]="this.detailInfo?.lat_lng.lng"
         [zoomPixel]="18"
+        [showRoute]="true"
+        (estimateTimeEvent)="getEstimateDuration($event)"
       ></app-google-map>
     </div>
-
-    <!-- <p-splitter [style]="{ height: '480px' }" [minSizes]="[30,40]">
-          <ng-template pTemplate>
-            <div class="col">
-              <div class="container px-5 py-4">
-                <div class="content-header">
-                <h1>PhoeShweLa</h1>
-                <p>Parami Road</p>
-              </div>
-              <hr />
-              <div>
-                <h5>Opening Hours</h5>
-                <ul>
-                  <li>Mon: 10:00AM-10:00PM</li>
-                  <li>Tue: 10:00AM-10:00PM</li>
-                  <li>Wed: 10:00AM-10:00PM</li>
-                  <li>Thu: 10:00AM-10:00PM</li>
-                  <li>Fri: 10:00AM-10:00PM</li>
-                  <li>Sat: 10:00AM-10:00PM</li>
-                  <li>Sun: 10:00AM-10:00PM</li>
-                </ul>
-                <br>
-                <h5>Contact Number</h5>
-                <p>095648534</p>
-                <h5>Rating</h5>
-                <p>4 out of 5</p>
-              </div>
-              </div>
-            </div>
-          </ng-template>
-          <ng-template pTemplate>
-            <div class="col flex align-items-center justify-content-center">
-              <app-google-map></app-google-map>
-            </div>
-          </ng-template>
-        </p-splitter> -->
   </div>
-  <div class="col-12"></div>
 </div>
 
-<div class="centered-content">
-  <mat-card class="recommend-card card">
-    <mat-card-header>
-      <mat-card-subtitle>Phoe Shwe La</mat-card-subtitle>
-      <mat-card-title>Restaurant</mat-card-title>
-
-      <span
-        class="star"
-        *ngFor="let _ of [].constructor(fullStars); let i = index"
-        >★</span
-      >
-      <span class="star half" *ngIf="hasHalfStar">☆</span>
-      <span
-        class="star"
-        *ngFor="let _ of [].constructor(emptyStars); let i = index"
-        >☆</span
-      >
-    </mat-card-header>
-    <!-- <mat-divider></mat-divider> -->
-
-    <mat-card-content>
-      <br />
-      <p style="font-size: 18px">
-        Its a burmese style cook and juice and someting and blah blah blah
-      </p>
-      <br />
-    </mat-card-content>
-    <mat-divider></mat-divider>
-
-    <mat-card-content>
-      <br />
-
-      <div class="d-flex">
-        <div class="first">
-          <i class="fas fa-map-marker-alt" style="font-size: 24px"></i>
+<div *ngIf="relatedLocations.length > 0" class="mx-3 my-4">
+<div class="container">
+    <div class="row">
+    <h2>You may also like</h2>
+  </div>
+  <div class="row scrolling-wrapper-flexbox">
+    <ng-container *ngFor="let location of relatedLocations">
+      <div class="col-4 mx-3 my-2 p-2">
+        <div class="centered-content">
+          <mat-card class="recommend-card card related-locations-card">
+            <mat-card-header>
+              <mat-card-title>{{ location.name }}</mat-card-title>
+              <mat-card-subtitle>
+                <span *ngFor="let star of getRatingStars(location.rating)">
+                  <span class="star" *ngIf="star == true">★</span>
+                  <span class="star half" *ngIf="star === 0.5"></span>
+                  <span class="star" *ngIf="star == false">☆</span>
+                </span>
+              </mat-card-subtitle>
+              <br />
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+              <br />
+              <div class="d-flex">
+                <div class="first">
+                  <i class="fas fa-map-marker-alt" style="font-size: 20px"></i>
+                </div>
+                <div class="second">
+                  <p>{{ location.vicinity }}</p>
+                </div>
+                <br />
+              </div>
+            </mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+              <br />
+              <div class="d-flex">
+                <div class="first">
+                  <i class="far fa-clock" style="font-size: 24px"></i>
+                </div>
+                <div class="second">
+                  <p>{{ location.open_now ? "Open Now" : "Close" }}</p>
+                </div>
+                <br />
+              </div>
+            </mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-actions class="button-container p-1">
+              <button
+                class="btn btn-outline-primary"
+                color="blue"
+                style="font-size: 20px"
+                (click)="checkDetail(location.place_id)"
+              >
+                Details
+              </button>
+            </mat-card-actions>
+          </mat-card>
         </div>
-        <div class="second">
-          <p>{{ location }}</p>
-        </div>
-
-        <br />
       </div>
-    </mat-card-content>
-    <mat-divider></mat-divider>
-
-    <mat-card-content>
-      <br />
-
-      <div class="d-flex">
-        <div class="first">
-          <i class="far fa-clock" style="font-size: 24px"></i>
-        </div>
-        <div class="second">
-          <p>{{ open_status }}</p>
-        </div>
-
-        <br />
-      </div>
-    </mat-card-content>
-    <mat-divider></mat-divider>
-    <mat-card-content>
-      <br />
-
-      <div class="d-flex">
-        <div class="first">
-          <i class="fas fa-phone-alt" style="font-size: 24px"></i>
-        </div>
-        <div class="second">
-          <p>{{ ph_no }}</p>
-        </div>
-
-        <br />
-      </div>
-    </mat-card-content>
-
-    <!-- <mat-card-actions class="button-container">
-                <button mat-button color="blue" style="font-size: 20px;">Review/Comment <i class='far fa-comments'></i></button>
-            </mat-card-actions> -->
-
-    <!-- <mat-card-footer>
-            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-        </mat-card-footer> -->
-  </mat-card>
+    </ng-container>
+  </div>
+</div>
 </div>

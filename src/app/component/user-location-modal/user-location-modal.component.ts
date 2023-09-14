@@ -16,6 +16,7 @@ import { Coordinate, LocationService } from 'src/app/services/location.service';
 })
 export class UserLocationModalComponent implements OnInit {
   isChooseonMap = false;
+  isUserLocationAllowed = false;
   coordinate: Coordinate = new Coordinate();
   @Output() searchCustomLocationEvent = new EventEmitter<boolean>();
 
@@ -26,22 +27,28 @@ export class UserLocationModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this._locationService.initialUserLocation();
+    this._locationService.initializeUserLocation().then((result) => {
+      this.isUserLocationAllowed = result;
+    });
+
     this.coordinate = this._locationService.getUserCoordinate();
-    console.log(this.coordinate);
   }
 
   showMap(): void {
     this.isChooseonMap = true;
   }
 
-  getLocation() {
+  trackUserLocation() {
     this.isChooseonMap = false;
+    this._locationService.trackUserLocation();
     this.searchLocations();
   }
 
   searchLocations(): void {
+    console.log(this.coordinate);
     this.modal.close();
-    this.router.navigate(['/', 'list']);
+    this.router
+      .navigateByUrl('/', { skipLocationChange: true, replaceUrl: true })
+      .then(() => this.router.navigate(['/', 'list']));
   }
 }

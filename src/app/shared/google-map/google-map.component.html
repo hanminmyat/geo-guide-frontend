@@ -1,8 +1,12 @@
 <div class="google-map">
-   <google-map
+  <google-map
     [options]="options"
-    (mapClick)="onMapClick($event)"
-   >
+    (mapClick)="showRoute ? null : onMapClick($event)"
+  >
     <map-marker [position]="markerPosition"></map-marker>
-   </google-map>
+    <ng-container *ngIf="directionResult">
+      <map-directions-renderer [directions]="directionResult">
+      </map-directions-renderer>
+    </ng-container>
+  </google-map>
 </div>
