@@ -44,8 +44,8 @@ export class DetailComponent implements OnInit {
 
   ngOnInit(): void {
     this._locationService.checkUserLocation();
-    this.relatedLocations =
-      this._locationService.getRelatedRecommendLocations();
+    // this.relatedLocations =
+    //   this._locationService.getRelatedRecommendLocations();
     this.route.params.subscribe((params) => {
       this.placeId = params['id'];
       this.getLocationDetail();
@@ -57,14 +57,13 @@ export class DetailComponent implements OnInit {
     this._locationService.getLocationDetail(this.placeId).subscribe((data) => {
       if (data) {
         this.detailInfo = data;
-        // this.getRelatedRecommendLocations();
+        this._locationService.getRelatedRecommendLocations(this.detailInfo!).then((result) => {
+          this.relatedLocations = result;
+          console.log(this.relatedLocations)
+        });
       }
     });
   }
-
-  // getRelatedRecommendLocations() {
-  //   this._locationService.getNearbyLocations(50000, this.detailInfo)
-  // }
 
   initMap() {
     this.mapOptions = {

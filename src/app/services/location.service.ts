@@ -87,8 +87,34 @@ export class LocationService {
     this.relatedRecommendLocations = locations;
   }
 
-  getRelatedRecommendLocations() {
-    return this.relatedRecommendLocations;
+  // getRelatedRecommendLocations() {
+  //   return this.relatedRecommendLocations;
+  // }
+
+  getRelatedRecommendLocations(
+    selectedLocation: LocationDetail
+  ): Promise<NearbyLocation[]> {
+    let filterType1 = selectedLocation?.types[0] || '';
+    let filterType2 = selectedLocation?.types[1] || '';
+    let relatedLocations = new Promise<NearbyLocation[]>((resolve) => {
+      this.getNearbyLocations(
+        50000,
+        selectedLocation.types.join('|'),
+        ''
+      ).subscribe((result) => {
+        let locations = result.locations
+          .filter(
+            (location: NearbyLocation) =>
+              (location.types.includes(filterType1) ||
+                location.types.includes(filterType2)) &&
+              location.rating > 3
+          )
+          .slice(0, 10);
+        resolve(locations);
+      });
+    });
+
+    return relatedLocations;
   }
 }
 
@@ -119,4 +145,5 @@ export class LocationDetail {
   rating = '';
   open_hours = [];
   top_reviews = [];
+  types = [];
 }

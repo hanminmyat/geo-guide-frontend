@@ -2,6 +2,10 @@
   background-color: #140f44;
 }
 
+.footer-bg {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
 .location-container {
   display: flex;
   flex-direction: row;

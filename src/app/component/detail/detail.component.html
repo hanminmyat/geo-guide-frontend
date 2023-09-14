@@ -61,15 +61,17 @@
     </div>
   </div>
 </div>
-
+<div class="container">
+  <hr>
+</div>
 <div *ngIf="relatedLocations.length > 0" class="mx-3 my-4">
 <div class="container">
-    <div class="row">
-    <h2>You may also like</h2>
+    <div class="row mt-2">
+    <h2>You may also like: </h2>
   </div>
   <div class="row scrolling-wrapper-flexbox">
     <ng-container *ngFor="let location of relatedLocations">
-      <div class="col-4 mx-3 my-2 p-2">
+      <div class="col-4 mx-2 my-2 p-2">
         <div class="centered-content">
           <mat-card class="recommend-card card related-locations-card">
             <mat-card-header>
