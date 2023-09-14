@@ -1,6 +1,22 @@
 <div id="home">
   <div class="m-0 p-0" style="background: rgba(0,0,0,0.6)">
-  <div class="container">
+    <div class="container" style="height: 45vh;">
+      <div class="row">
+        <div class="d-flex justify-content-end">
+          <div *ngIf="weatherInfo" class="mx-1 my-1 weather-widget">
+            <h1 class="m-0">Yangon</h1>
+            <h5>{{ weatherInfo.weatherText }}</h5>
+            <div>
+              <h1>{{ weatherInfo.temperature_metric.Value+"&deg;C" }}</h1>
+            </div>
+            <div class="recommend-text">
+              <button class="btn btn-outline-light" (click)="showLocations(ideaText.type)">{{ ideaText.label }}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="container" style="height: 45vh;">
     <div>
       <h1 style="font-size: 46px;">Find your perfect attractions</h1>
       <button

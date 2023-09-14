@@ -5,9 +5,20 @@
 }
 
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
   color: white;
-  height: 90vh;
+  /* height: 90vh; */
+}
+
+.weather-widget{
+  width: 270px;
+  padding: 10px 20px;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.recommend-text{
+  font-size: 12px;
+  cursor: pointer;
 }

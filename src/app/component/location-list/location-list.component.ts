@@ -4,7 +4,7 @@ import {
   NearbyLocation,
 } from 'src/app/services/location.service';
 import { MenuItem, MenuItemCommandEvent } from 'primeng/api';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-location-list',
@@ -31,13 +31,26 @@ export class LocationListComponent implements OnInit {
 
   constructor(
     private _locationService: LocationService,
-    private route: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this._locationService.checkUserLocation();
+    this.route.queryParams.subscribe((params) => {
+      let filterType = params['type'];
+      console.log(filterType)
+      if (filterType == 0) {
+        this.type = 'cafe';
+      } else if (filterType == 1) {
+        this.type = 'restaurant|food';
+      } else {
+        this.type = '';
+      }
+
     this.getLocations();
     this.initializeMenuItems();
+    });
   }
 
   searchCustomLocationFromModal(event: boolean) {
@@ -224,7 +237,7 @@ export class LocationListComponent implements OnInit {
 
   showDetail(id: string) {
     this.getMostRecommendLists(id);
-    this.route.navigate(['/detail', id]);
+    this.router.navigate(['/detail', id]);
   }
 
   initializeMenuItems(): void {
