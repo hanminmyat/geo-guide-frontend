@@ -15,8 +15,8 @@ export class HomeComponent implements OnInit {
     label: '',
     type: -1,
   };
-
   weatherCondition = '';
+  
   constructor(
     private modalService: NgbModal,
     private _weatherService: WeatherService,
