@@ -41,12 +41,13 @@ export class HomeComponent implements OnInit {
 
     if (
       (this.weatherCondition === 'cloudy' ||
-        this.weatherCondition === 'rainy') &&
+        this.weatherCondition === 'rainy' ||
+        this.weatherCondition === 'mostly cloudy') &&
       !isLunchTime
     ) {
       this.ideaText.type = 0;
       this.ideaText.label = 'Embrace the weather with a cozy coffee!';
-    } else if (this.weatherCondition === 'sunny' && isLunchTime) {
+    } else if (isLunchTime) {
       this.ideaText.type = 1;
       this.ideaText.label = 'Savor the sunshine, dine out nearby!';
     } else {

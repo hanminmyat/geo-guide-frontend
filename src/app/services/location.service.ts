@@ -107,7 +107,8 @@ export class LocationService {
             (location: NearbyLocation) =>
               (location.types.includes(filterType1) ||
                 location.types.includes(filterType2)) &&
-              location.rating > 3
+              location.rating > 3 &&
+              location.place_id !=  selectedLocation.place_id
           )
           .slice(0, 10);
         resolve(locations);
@@ -136,6 +137,7 @@ export class NearbyLocation {
 }
 
 export class LocationDetail {
+  place_id: string = '';
   name: string = '';
   logo_or_image = '';
   lat_lng: any;

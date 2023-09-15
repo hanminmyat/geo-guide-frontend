@@ -19,7 +19,7 @@ export class WeatherService {
 
   getWeatherStatus(): Observable<any> {
     return this.http.get(
-      `${this.backend_baseUrl}/api/get-weather-staus`,
+      `${this.backend_baseUrl}/api/get-weather-status`,
       { headers: this.headers }
     );
   }
