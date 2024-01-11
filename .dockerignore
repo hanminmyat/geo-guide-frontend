@@ -1,0 +1,15 @@
+# Ignore node_modules directory
+node_modules
+
+# Ignore any build artifacts
+dist
+
+# Ignore any development or editor-specific files
+*.log
+*.swp
+.vscode/
+.idea/
+
+# Ignore any version control files
+.git
+.gitignore
